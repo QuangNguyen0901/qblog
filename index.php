@@ -7,8 +7,12 @@ $db = new Database();
 
 $sql = "INSERT INTO tes_table(name) VALUE ('123')";
 $db->query($sql);
-if($db->execute()){
-    echo $db->lastInsertId();
-}else{
-    echo "Insert fail";
-};
+
+//if($db->execute()){
+//    echo $db->lastInsertId();
+//}else{
+//    echo "Insert fail";
+//};
+
+$db->execute();
+echo $db->lastInsertId();
