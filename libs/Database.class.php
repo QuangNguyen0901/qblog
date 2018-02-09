@@ -12,10 +12,9 @@ class Database extends PDO {
 
     public function __construct()
     {
-//        $dsn = 'mysql:host =' . $this->host . ';dbname="' . $this->dbname . '";charset=utf8';
-//        echo $dsn;
-//        $options = array(PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
-//
+        $dsn = 'mysql:host=' . $this->host . ';dbname='.$this->dbname . ';charset=utf8';
+        $options = array(PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
+
 //        try {
 //            $this->_db = new PDO($dsn, $this->user, $this->pass, $options);
 //        } catch (PDOException $e) {
@@ -23,10 +22,10 @@ class Database extends PDO {
 //            $this->error = $e->getMessage();
 //        }
         try {
-            $this->_db = new PDO("mysql:host=$this->host;dbname=$this->dbname", $this->user, $this->pass);
+//            $this->_db = new PDO("mysql:host=$this->host;dbname=$this->dbname", $this->user, $this->pass);
             // set the PDO error mode to exception
-//            $this->_db=parent::__construct("mysql:host=$this->host;dbname=$this->dbname", $this->user, $this->pass);
-            $this->_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            parent::__construct("mysql:host=$this->host;dbname=$this->dbname", $this->user, $this->pass,$options);
+//            $this->_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             echo "Connected successfully";
         }
         catch(PDOException $e)
@@ -36,7 +35,7 @@ class Database extends PDO {
     }
 
     public function query($sql){
-        $this->stmt = $this->_db->prepare($sql);
+        $this->stmt = $this->prepare($sql);
     }
 
     public function bind($params_array){
