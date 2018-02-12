@@ -10,7 +10,16 @@
 //--------CheckDB-------------
 
 require_once (__DIR__ . '/libs/bootstrap.php');
-echo 'HTTP_ HOST : '. $_SERVER['HTTP_HOST'];
-echo "<br>";
-echo 'REQUEST _URI : '. $_SERVER['REQUEST_URI'];
+//echo 'HTTP_ HOST : '. $_SERVER['HTTP_HOST'];
+//echo "<br>";
+//echo 'REQUEST _URI : '. $_SERVER['REQUEST_URI'];
+
+$admin_pattern = "/^(\/admin)(\/)((.))*)*/";
+
+if (preg_match($admin_pattern,$_SERVER['REQUEST_URI'])){
+    include(getcwd() . '/app/backend/index.php');
+}else {
+    include_once ('router.php');
+}
+?>
 
