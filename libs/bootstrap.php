@@ -8,4 +8,4 @@ function __autoLoad($className){
     include_once (__DIR__ .'/' . $className . '.class.php');
 }
 
-$db = new Database();
+//$db = new Database();
