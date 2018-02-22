@@ -1,7 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT']. '/libs/bootstrap.php');
-//echo $root.'  root';
-$main_content = $root.'/app/frontend/views/main_contents/home.php';
+$background_image ='/assets/img/home-bg.jpg';
+$main_content = $root.'/app/frontend/sites/home.php';
 include ($root.'/app/frontend/views/layout.php');
 ?>
 
