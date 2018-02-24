@@ -26,7 +26,7 @@ class Database extends PDO {
             // set the PDO error mode to exception
             parent::__construct("mysql:host=$this->host;dbname=$this->dbname", $this->user, $this->pass,$options);
 //            $this->_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "Connected successfully";
+//            echo "Connected successfully";
         }
         catch(PDOException $e)
         {
@@ -70,7 +70,7 @@ class Database extends PDO {
 
     public function findAll(){
         $this->execute();
-        return $this->stmt->fetch(PDO::FETCH_ASSOC);
+        return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function findOne(){
