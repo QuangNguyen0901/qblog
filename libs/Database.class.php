@@ -12,21 +12,11 @@ class Database extends PDO {
 
     public function __construct()
     {
-        $dsn = 'mysql:host=' . $this->host . ';dbname='.$this->dbname . ';charset=utf8';
+        $dsn = "mysql:host=$this->host;dbname=$this->dbname;charset=utf8";
         $options = array(PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
-
-//        try {
-//            $this->_db = new PDO($dsn, $this->user, $this->pass, $options);
-//        } catch (PDOException $e) {
-//            echo $e->getMessage();
-//            $this->error = $e->getMessage();
-//        }
         try {
-//            $this->_db = new PDO("mysql:host=$this->host;dbname=$this->dbname", $this->user, $this->pass);
-            // set the PDO error mode to exception
-            parent::__construct("mysql:host=$this->host;dbname=$this->dbname", $this->user, $this->pass,$options);
-//            $this->_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-//            echo "Connected successfully";
+            parent::__construct($dsn, $this->user, $this->pass,$options);
+//           //            echo "Connected successfully";
         }
         catch(PDOException $e)
         {

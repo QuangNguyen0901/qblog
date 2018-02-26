@@ -2,22 +2,19 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-            <?php foreach ($row as $post) { ?>
+
                 <div class="post-preview">
-                    <a href="?m=post&a=view&id=<?php echo $post['id'] ?>">
+                    <a>
                         <h2 class="post-title">
-                            <?php echo $post['title'] ?>
+                            <?php echo $row['title'] ?>
                         </h2>
                         <h3 class="post-subtitle">
-                            <?php echo $post['short_des'] ?>
+                            <?php echo $row['content'] ?>
                         </h3>
                     </a>
-                    <p class="post-meta">Posted on <?php echo $post['created_at'] ?></p>
+                    <p class="post-meta">Posted on <?php echo $row['created_at'] ?></p>
                 </div>
                 <hr>
-                <?php
-            }
-            ?>
         </div>
     </div>
 </div>
