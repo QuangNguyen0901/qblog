@@ -18,9 +18,9 @@
                 <?php
             }
             ?>
-            <div class="clearfix">
-                <a class="btn btn-primary float-right" href="?m=post&a=list">Older Posts &rarr;</a>
-            </div>
+            <?php
+            pager_function($totalPages,$currentPage,$link);
+            ?>
         </div>
     </div>
 </div>

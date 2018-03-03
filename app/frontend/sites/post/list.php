@@ -19,7 +19,10 @@ $sql = "SELECT COUNT(*) FROM post WHERE title !='about' AND published = 1";
 $db->query($sql);
 $totalItems = $db->findOne()['COUNT(*)'];
 $totalPages = ceil($totalItems/$limit);
+$currentPage = $_GET['page'];
+$link = '/?m=post&a=list&page={page}';
 
 $background_image ='/assets/img/home-bg.jpg';
 $main_content = $root.'/app/frontend/views/post/list.php';
+include ($root.'/libs/pager.php');
 include ($root.'/app/frontend/views/layout.php');
