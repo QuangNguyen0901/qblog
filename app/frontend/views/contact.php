@@ -10,7 +10,7 @@
                 <div class="control-group">
                     <div class="form-group floating-label-form-group controls">
                         <label>Name</label>
-                        <input type="text" class="form-control" placeholder="Name" id="name" required data-validation-required-message="Please enter your name.">
+                        <input type="text" class="form-control" placeholder="Name" name="name" id="name" required data-validation-required-message="Please enter your name.">
                         <p class="help-block text-danger"></p>
                     </div>
                 </div>
@@ -38,9 +38,13 @@
                 <br>
                 <div id="success"></div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
+                    <button type="submit" class="btn btn-primary" id="sendMessageButton" >Send</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+<?php
+$sender_email = $_POST['name'];
+echo $sender_email;
+?>

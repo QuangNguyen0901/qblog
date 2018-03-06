@@ -40,10 +40,10 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="http://qblog.com">Home</a>
+                    <a class="nav-link" href="http://<?php echo $host?>">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="about.php">About</a>
+                    <a class="nav-link" href="?a=about">About</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="?m=post&a=post">Sample Post</a>

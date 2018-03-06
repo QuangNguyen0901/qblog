@@ -9,3 +9,5 @@ function __autoLoad($className){
 }
 
 //$db = new Database();
+
+$host= $_SERVER['HTTP_HOST'];
