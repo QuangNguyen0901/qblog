@@ -1,4 +1,5 @@
 <?php
+echo 'backend add new post';
 /**
  * Created by PhpStorm.
  * User: quangnguyen
