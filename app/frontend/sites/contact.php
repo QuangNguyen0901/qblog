@@ -9,5 +9,5 @@ echo $sender_email;
 
 
 
-//include ($root.'/libs/send_mail.php');
+include ($root.'/libs/send_mail.php');
 ?>
