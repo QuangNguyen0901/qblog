@@ -1,4 +1,5 @@
 <?php
+echo 'backend HOME';
 /**
  * Created by PhpStorm.
  * User: quangnguyen

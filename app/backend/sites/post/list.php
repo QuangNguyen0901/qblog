@@ -1,4 +1,5 @@
 <?php
+echo 'backend list post';
 /**
  * Created by PhpStorm.
  * User: quangnguyen

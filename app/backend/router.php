@@ -1,6 +1,20 @@
 <?php
+//echo 'router backend';
+if (!session_id()) session_start();
+
+$user = $_SESSION['user'];
+//
+//
+
 $a = $_GET['a'];
 $m = $_GET['m'];
+
+if (!$user || $user['role']!=1){
+    //redirect toi trang login
+    $m='user';
+//    $a='login';
+    $a='test';
+//}
 
 if ($m) {
     if ($a) {
@@ -23,3 +37,5 @@ if ($m) {
             include ('home.php');
         }
     }
+}
+
