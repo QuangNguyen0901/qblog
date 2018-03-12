@@ -20,7 +20,8 @@ class Hash {
      * @return string chuỗi mã hóa ngẫu nhiên
      *  */
     public function random(){
-        $result = base64_encode(mcrypt_create_iv("20", MCRYPT_RAND));
+//        $result = base64_encode(mcrypt_create_iv("20", MCRYPT_RAND));
+        $result = random_int(100000,999999);
         return $result;
     }
 }
