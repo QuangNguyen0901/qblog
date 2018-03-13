@@ -29,7 +29,7 @@ if(!empty($_POST)){
 echo $user_name;
 
     if($success){
-        $db=new Database();
+        $db= new Database();
         $flash = NULL;
         $sql= "SELECT salt FROM member WHERE user_name= $user_name";
         $db->query($sql);
