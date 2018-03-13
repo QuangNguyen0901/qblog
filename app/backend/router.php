@@ -12,8 +12,8 @@ $m = $_GET['m'];
 if (!$user || $user['role']!=1){
     //redirect toi trang login
     $m='user';
-//    $a='login';
-    $a='test';
+    $a='login';
+//    $a='test';
 //}
 
 if ($m) {
