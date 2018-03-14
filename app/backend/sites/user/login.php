@@ -26,27 +26,36 @@ if(!empty($_POST)){
         $flash['msg'].='Please input password';
         $success = false;
     }else $pass = $_POST['pass'];
-echo $user_name;
+//echo $user_name;
 
     if($success){
         $db= new Database();
         $flash = NULL;
-        $sql= "SELECT salt FROM member WHERE user_name= $user_name";
+        $sql= "SELECT salt FROM member WHERE user_name = '$user_name'";
+        echo $sql;
         $db->query($sql);
+//        $db->bind([
+//            ':user_name'=>$user_name
+//        ]);
         $salt = $db->findOne()['salt'];
         $pass = $hash->create($pass,$salt);
 
-        $sql = "SELECT * FROM member WHERE user_name= $user_name AND password = $pass";
+        $sql = "SELECT * FROM member WHERE user_name = '$user_name' AND password = '$pass'";
+        echo $sql;
         $db->query($sql);
+//        $db->bind([
+//            ':user_name'=>$user_name,
+//            ':pass'=>$pass
+//        ]);
         $user = $db->findOne();
 
         if ($db->rowCount() == 1){
             $_SESSION['user'] = $user;
-            header("Location:http://qblog.com/admin");
+            header("Location:http://qblog.com/admin/");
             exit;
         }else {
             $_SESSION['flash']=$flash;
-            header("Location:http://.qblog.com/admin/?m=user&a=login");
+            header("Location:http://qblog.com/admin/?m=user&a=login");
             exit;
         }
     }else{
