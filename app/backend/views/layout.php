@@ -60,7 +60,7 @@
         </section>
 
         <!-- Main content -->
-<!--        --><?php //include ('main_content.php'); ?>
+        <?php include ($main_content); ?>
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->

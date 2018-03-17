@@ -1,6 +1,7 @@
 <?php
 //echo "user login aaaa";
 //define('HOST','qblog.com');
+print_r($_SESSION);
 if (!session_id()) session_start();
 $_SESSION['user']=NULL;
 require_once ($url_common.'/libs/hash.php');
@@ -16,13 +17,14 @@ if(!empty($_POST)){
     $success = true;
 
     if (!$_POST['user'] || $_POST['user'] == ''){
-        $flash['type'] = 'error';
+        $flash['type'] = 'alert-danger';
         $flash['msg'].='Please input username';
         $success = false;
     }else $user_name = $_POST['user'];
 
     if (!$_POST['pass'] || $_POST['pass'] == ''){
-        $flash['type'] = 'error';
+        $flash['type'] = 'alert-danger';
+        if ($flash['msg'] != '') $flash['msg'].='<br>';
         $flash['msg'].='Please input password';
         $success = false;
     }else $pass = $_POST['pass'];
@@ -31,6 +33,7 @@ if(!empty($_POST)){
     if($success){
         $db= new Database();
         $flash = NULL;
+        unset($_SESSION['flash']);
         $sql= "SELECT salt FROM member WHERE user_name = '$user_name'";
         echo $sql;
         $db->query($sql);
@@ -52,6 +55,8 @@ if(!empty($_POST)){
         if ($db->rowCount() == 1){
             $_SESSION['user'] = $user;
             header("Location:http://qblog.com/admin/");
+//            header("Location:http://qblog.com/admin/?m=user&a=test");
+
             exit;
         }else {
             $_SESSION['flash']=$flash;

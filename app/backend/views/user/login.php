@@ -28,10 +28,21 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition login-page">
-<div class="login-box">
+
+<!--flash-->
+<div class="box-body">
+    <div class="alert <?php echo $_SESSION['flash']['type'] ?> alert-dismissible">
+        <?php echo $_SESSION['flash']['msg'] ?>
+    </div>
+</div>
+<!--    flash end-->
+
+
+<div class="login-box" style="margin-top: 20px">
     <div class="login-logo">
         <a href="../../index2.html"><b>Admin</b>LTE</a>
     </div>
+
     <!-- /.login-logo -->
     <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
