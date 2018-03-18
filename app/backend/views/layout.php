@@ -60,7 +60,12 @@
         </section>
 
         <!-- Main content -->
+        <section class="content">
+            <div class="row">
         <?php include ($main_content); ?>
+            </div>
+            <!-- /.row -->
+        </section>
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
