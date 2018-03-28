@@ -41,7 +41,7 @@
             <div class="box-footer">
                 <div class="col-sm-offset-2 col-sm-6">
                     <button type="submit" class="btn btn-default">Cancel</button>
-                    <button type="submit" class="btn btn-info pull-right">Sign in</button>
+                    <button type="submit" class="btn btn-info pull-right">Save</button>
                 </div>
             </div>
             <!-- /.box-footer -->
