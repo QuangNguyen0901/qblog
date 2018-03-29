@@ -14,12 +14,50 @@
         <form class="form-horizontal">
             <div class="box-body">
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                    <label class="col-sm-2 control-label">User Name</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" placeholder="User Name" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Full Name</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" placeholder="Full Name">
+                    </div>
+                </div>
 
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Role</label>
+                    <div class="col-sm-6">
+                        <div class="radio-inline">
+                            <label style = "font-weight: normal">
+                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                1
+                            </label>
+                        </div>
+                        <div class="radio-inline">
+                            <label style = "font-weight: normal">
+                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                2
+                            </label>
+                        </div>
+                        <div class="radio-inline">
+                            <label style = "font-weight: normal">
+                                <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled>
+                                3
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
                     <div class="col-sm-6">
                         <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
                     </div>
                 </div>
+
                 <div class="form-group">
                     <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
 
