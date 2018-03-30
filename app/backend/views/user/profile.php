@@ -65,6 +65,16 @@
                         <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label for="exampleInputFile" class="col-sm-2 control-label">Avatar</label>
+                    <div class="col-sm-6">
+                        <input type="file" id="exampleInputFile">
+                        <p class="help-block">Example block-level help text here.</p>
+                        <img class="img-responsive" src="/assets/AdminLTE/dist/img/user2-160x160.jpg"  alt="Photo">
+                    </div>
+
+                </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-6">
                         <div class="checkbox">
