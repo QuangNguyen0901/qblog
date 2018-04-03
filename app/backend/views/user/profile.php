@@ -11,7 +11,7 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <form class="form-horizontal">
+        <form class="form-horizontal" action="/app/backend/sites/user/profile.php" method="post" enctype="multipart/form-data" >
             <div class="box-body">
                 <div class="form-group">
                     <label class="col-sm-2 control-label">User Name</label>
@@ -69,7 +69,7 @@
                 <div class="form-group">
                     <label for="exampleInputFile" class="col-sm-2 control-label">Avatar</label>
                     <div class="col-sm-6">
-                        <input type="file" id="exampleInputFile">
+                        <input type="file" id="exampleInputFile" name="fileToUpload">
                         <p class="help-block">Example block-level help text here.</p>
                         <img class="img-responsive" src="/data/img/avatar/no-avatar.png"  alt="Photo">
                     </div>
@@ -89,7 +89,7 @@
             <div class="box-footer">
                 <div class="col-sm-offset-2 col-sm-6">
                     <button type="submit" class="btn btn-default">Cancel</button>
-                    <button type="submit" class="btn btn-info pull-right">Save</button>
+                    <button type="submit" name="submit" class="btn btn-info pull-right">Save</button>
                 </div>
             </div>
             <!-- /.box-footer -->
