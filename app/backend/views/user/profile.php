@@ -71,7 +71,7 @@
                     <div class="col-sm-6">
                         <input type="file" id="exampleInputFile">
                         <p class="help-block">Example block-level help text here.</p>
-                        <img class="img-responsive" src="/assets/AdminLTE/dist/img/user2-160x160.jpg"  alt="Photo">
+                        <img class="img-responsive" src="/data/img/avatar/no-avatar.png"  alt="Photo">
                     </div>
 
                 </div>
