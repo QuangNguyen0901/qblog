@@ -54,6 +54,7 @@ if(!empty($_POST)){
 
         if ($db->rowCount() == 1){
             $_SESSION['user'] = $user;
+            echo 'login thanh cong';
             header("Location:http://qblog.com/admin/");
 //            header("Location:http://qblog.com/admin/?m=user&a=test");
 

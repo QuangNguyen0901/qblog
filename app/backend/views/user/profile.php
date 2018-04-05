@@ -16,13 +16,13 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">User Name</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" placeholder="User Name" disabled>
+                        <input type="text" class="form-control" name="user_name" placeholder="User Name" value="<?php echo $_SESSION['user']['user_name'] ?>" disabled>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Full Name</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" placeholder="Full Name">
+                        <input type="text" class="form-control" name="full_name" placeholder="Full Name" value="<?php echo $_SESSION['user']['full_name'] ?>">
                     </div>
                 </div>
 
@@ -54,7 +54,7 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
                     <div class="col-sm-6">
-                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                        <input type="email" class="form-control" name="email" id="inputEmail3" placeholder="Email" value="<?php echo $_SESSION['user']['email'] ?>">
                     </div>
                 </div>
 
@@ -62,7 +62,7 @@
                     <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
 
                     <div class="col-sm-6">
-                        <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                        <input type="password" class="form-control" name="pass" id="inputPassword3" placeholder="Password">
                     </div>
                 </div>
 
@@ -71,7 +71,7 @@
                     <div class="col-sm-6">
                         <input type="file" id="exampleInputFile" name="fileToUpload">
                         <p class="help-block">Example block-level help text here.</p>
-                        <img class="img-responsive" src="/data/img/avatar/no-avatar.png"  alt="Photo">
+                        <img class="img-responsive" src="<?php echo '/data/img/avatar/'.$_SESSION['user']['image'] ?>"  alt="Photo" width="160" height="160">
                     </div>
 
                 </div>

@@ -1,14 +1,21 @@
 <?php
 $url_common = $_SERVER['DOCUMENT_ROOT'];
-require_once ($url_common.'/libs/class.upload.php');
-require_once ($url_common.'/libs/Database.class.php');
+require_once($url_common . '/libs/class.upload.php');
+require_once($url_common . '/libs/Database.class.php');
+require_once($url_common . '/libs/bootstrap.php');
 session_start();
 //echo 'backend profile';
 //print_r($_SESSION);
-
+//print_r($_SESSION['flash']);
+//echo '<br>';
+//var_dump($_FILES);
+//echo '<br>';
+//echo '<br>';
 $_SESSION['flash'] = Null;
 
 if (!empty($_POST)) {
+//    var_dump($_FILES);
+//    var_dump($_POST);
     $flash = [
         'type' => 'success',
         'msg' => ''
@@ -19,22 +26,34 @@ if (!empty($_POST)) {
     $allowType = array('jpeg', 'jpg', 'bmp', 'png');
     $full_name = '';
     $email = '';
-    $role = '';
+//    $role = '';
     $img = '';
     $file = $_FILES['fileToUpload'];
-
     $success = true;
 
+    $full_name = $_POST['full_name'];
+    $email = $_POST['email'];
 
-
-
+    print_r($_FILES);
     if ($file['name'] == '') {
         $img = $_SESSION['user']['image'];
     } else {
         $handle_upload = new upload($file);
-        $handle_upload->file_new_name_body = 'new name';
-        $handle_upload->process('/data/img/avatar/');
-
+        if ($handle_upload->uploaded) {
+//            var_dump($_FILES);
+            unlink($url_common .'/data/img/avatar/'.$_SESSION['user']['image'] );  //xoa file avatar cu
+            $handle_upload->file_new_name_body = 'avatarId'.$_SESSION['user']['id'];
+            $handle_upload->process($url_common .'/data/img/avatar/');
+            $img = $handle_upload->file_dst_name;
+            if ($handle->processed) {
+                echo 'image resized';
+                $handle->clean();
+            } else {
+                echo 'error : ' . $handle->error;
+            }
+        } else {
+            echo 'error : ' . $handle->error;
+        }
 
 //        $upload_result = uploadFile($file, $folder_to_upload, $allowType, $maxSize);
 //        if (count($upload_result["error"]) > 0) {
@@ -55,11 +74,12 @@ if (!empty($_POST)) {
 
         $db = new Database();
 
-        $sql = "UPDATE member SET full_name= :full_name,role= :role, email = :email,image=:image WHERE id=:id";
+//        $sql = "UPDATE member SET full_name= :full_name,role= :role, email = :email,image=:image WHERE id=:id";
+        $sql = "UPDATE member SET full_name= :full_name,email = :email,image=:image WHERE id=:id";
         $db->query($sql);
         $db->bind([
             ':full_name' => $full_name,
-            ':role' => $role,
+//            ':role' => $role,
             ':email' => $email,
             ':image' => $img,
             ':id' => $id
@@ -73,12 +93,12 @@ if (!empty($_POST)) {
         ]);
         $_SESSION['user'] = $db->findOne();
 
-        header('Location:http://' . HOST . '/admin?m=user&a=profile');
+        header('Location:http://' . HOST . '/admin/?m=user&a=profile');
         exit;
     } else {
         $flash['type'] = 'error';
         $_SESSION['flash'] = $flash;
-        header('Location:http://' . HOST . '/admin?m=user&a=profile');
+        header('Location:http://' . HOST . '/admin/?m=user&a=profile');
         exit;
     }
 } else {

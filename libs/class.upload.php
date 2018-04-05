@@ -32,6 +32,7 @@
  * @author    Colin Verot <colin@verot.net>
  * @license   http://opensource.org/licenses/gpl-license.php GNU Public License
  * @copyright Colin Verot
+ * https://github.com/verot/class.upload.php
  */
 class upload {
 
