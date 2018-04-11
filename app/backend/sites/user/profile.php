@@ -34,7 +34,7 @@ if (!empty($_POST)) {
     $full_name = $_POST['full_name'];
     $email = $_POST['email'];
 
-    print_r($_FILES);
+//    print_r($_FILES);
     if ($file['name'] == '') {
         $img = $_SESSION['user']['image'];
     } else {
@@ -45,16 +45,16 @@ if (!empty($_POST)) {
             $handle_upload->file_new_name_body = 'avatarId'.$_SESSION['user']['id'];
             $handle_upload->process($url_common .'/data/img/avatar/');
             $img = $handle_upload->file_dst_name;
-            if ($handle->processed) {
-                echo 'image resized';
-                $handle->clean();
-            } else {
-                echo 'error : ' . $handle->error;
-            }
+//            if ($handle->processed) {
+//                echo 'image resized';
+//                $handle->clean();
+//            } else {
+//                echo 'error : ' . $handle->error;
+//                echo '111';die;
+//            }
         } else {
-            echo 'error : ' . $handle->error;
+            echo 'error : ' . $handle->error;die;
         }
-
 //        $upload_result = uploadFile($file, $folder_to_upload, $allowType, $maxSize);
 //        if (count($upload_result["error"]) > 0) {
 //            $success = false;
@@ -112,9 +112,3 @@ if (!empty($_POST)) {
     echo $main_content;
     include($url_common . '/app/backend/views/layout.php');
 }
-
-
-
-
-
-
