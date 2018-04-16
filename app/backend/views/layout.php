@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Dashboard</title>
+    <title>Q Blog</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -27,6 +27,9 @@
     <link rel="stylesheet" href="/assets/AdminLTE/bower_components/bootstrap-daterangepicker/daterangepicker.css">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="/assets/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    
+    <!-- DataTables -->
+  <link rel="stylesheet" href="/assets/AdminLTE/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -310,5 +313,23 @@
 <script src="/assets/AdminLTE/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/assets/AdminLTE/dist/js/demo.js"></script>
+
+<!-- DataTables -->
+<script src="/assets/AdminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+
+<script>
+  $(function () {
+    $('#example1').DataTable();
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    });
+  })
+</script>
+
 </body>
 </html>

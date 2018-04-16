@@ -23,6 +23,5 @@ if (preg_match($admin_pattern, $_SERVER['REQUEST_URI'])) {
     include_once('router.php');
 }
 
-
 ?>
 

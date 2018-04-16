@@ -109,6 +109,6 @@ if (!empty($_POST)) {
         'action' => 'Profile'
     );
 
-    echo $main_content;
+//    echo $main_content;
     include($url_common . '/app/backend/views/layout.php');
 }

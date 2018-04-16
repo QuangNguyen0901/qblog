@@ -1,6 +1,5 @@
 <?php
-//echo "list all post";
-
+//echo "list all post"
 //?m-post&a=list&page=3
 //?m-post&a=list
 
