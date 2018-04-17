@@ -1,4 +1,5 @@
 <?php
+
 $url_common = $_SERVER['DOCUMENT_ROOT'];
 require_once($url_common . '/libs/class.upload.php');
 require_once($url_common . '/libs/Database.class.php');
@@ -41,9 +42,9 @@ if (!empty($_POST)) {
         $handle_upload = new upload($file);
         if ($handle_upload->uploaded) {
 //            var_dump($_FILES);
-            unlink($url_common .'/data/img/avatar/'.$_SESSION['user']['image'] );  //xoa file avatar cu
-            $handle_upload->file_new_name_body = 'avatarId'.$_SESSION['user']['id'];
-            $handle_upload->process($url_common .'/data/img/avatar/');
+            unlink($url_common . '/data/img/avatar/' . $_SESSION['user']['image']);  //xoa file avatar cu
+            $handle_upload->file_new_name_body = 'avatarId' . $_SESSION['user']['id'];
+            $handle_upload->process($url_common . '/data/img/avatar/');
             $img = $handle_upload->file_dst_name;
 //            if ($handle->processed) {
 //                echo 'image resized';
@@ -53,7 +54,8 @@ if (!empty($_POST)) {
 //                echo '111';die;
 //            }
         } else {
-            echo 'error : ' . $handle->error;die;
+            echo 'error : ' . $handle->error;
+            die;
         }
 //        $upload_result = uploadFile($file, $folder_to_upload, $allowType, $maxSize);
 //        if (count($upload_result["error"]) > 0) {

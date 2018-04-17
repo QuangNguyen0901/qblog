@@ -4,7 +4,7 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="<?php echo '/data/img/avatar/'.$_SESSION['user']['image'] ?>" class="img-circle" alt="User Image">
+                <img src="<?php echo '/data/img/avatar/' . $_SESSION['user']['image'] ?>" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
                 <p><?php echo $_SESSION['user']['full_name'] ?></p>
@@ -16,21 +16,22 @@
             <div class="input-group">
                 <input type="text" name="q" class="form-control" placeholder="Search...">
                 <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
+                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                    </button>
+                </span>
             </div>
         </form>
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MAIN NAVIGATION</li>
+            <li><a href="?m=category&a=category_list"><i class="fa fa-circle-o text-red"></i> <span>Catalog Manager</span></a></li>
             <li class="active treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                     <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
                     <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
@@ -42,8 +43,8 @@
                     <i class="fa fa-files-o"></i>
                     <span>Layout Options</span>
                     <span class="pull-right-container">
-              <span class="label label-primary pull-right">4</span>
-            </span>
+                        <span class="label label-primary pull-right">4</span>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
@@ -56,8 +57,8 @@
                 <a href="pages/widgets.html">
                     <i class="fa fa-th"></i> <span>Widgets</span>
                     <span class="pull-right-container">
-              <small class="label pull-right bg-green">new</small>
-            </span>
+                        <small class="label pull-right bg-green">new</small>
+                    </span>
                 </a>
             </li>
             <li class="treeview">
@@ -65,8 +66,8 @@
                     <i class="fa fa-pie-chart"></i>
                     <span>Charts</span>
                     <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
@@ -80,8 +81,8 @@
                     <i class="fa fa-laptop"></i>
                     <span>UI Elements</span>
                     <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
@@ -96,8 +97,8 @@
                 <a href="#">
                     <i class="fa fa-edit"></i> <span>Forms</span>
                     <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
@@ -109,8 +110,8 @@
                 <a href="#">
                     <i class="fa fa-table"></i> <span>Tables</span>
                     <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
@@ -121,27 +122,27 @@
                 <a href="pages/calendar.html">
                     <i class="fa fa-calendar"></i> <span>Calendar</span>
                     <span class="pull-right-container">
-              <small class="label pull-right bg-red">3</small>
-              <small class="label pull-right bg-blue">17</small>
-            </span>
+                        <small class="label pull-right bg-red">3</small>
+                        <small class="label pull-right bg-blue">17</small>
+                    </span>
                 </a>
             </li>
             <li>
                 <a href="pages/mailbox/mailbox.html">
                     <i class="fa fa-envelope"></i> <span>Mailbox</span>
                     <span class="pull-right-container">
-              <small class="label pull-right bg-yellow">12</small>
-              <small class="label pull-right bg-green">16</small>
-              <small class="label pull-right bg-red">5</small>
-            </span>
+                        <small class="label pull-right bg-yellow">12</small>
+                        <small class="label pull-right bg-green">16</small>
+                        <small class="label pull-right bg-red">5</small>
+                    </span>
                 </a>
             </li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-folder"></i> <span>Examples</span>
                     <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="pages/examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>
@@ -159,24 +160,24 @@
                 <a href="#">
                     <i class="fa fa-share"></i> <span>Multilevel</span>
                     <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
                     <li class="treeview">
                         <a href="#"><i class="fa fa-circle-o"></i> Level One
                             <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
                         </a>
                         <ul class="treeview-menu">
                             <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
                             <li class="treeview">
                                 <a href="#"><i class="fa fa-circle-o"></i> Level Two
                                     <span class="pull-right-container">
-                      <i class="fa fa-angle-left pull-right"></i>
-                    </span>
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
                                 </a>
                                 <ul class="treeview-menu">
                                     <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
