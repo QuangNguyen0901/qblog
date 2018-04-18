@@ -1,4 +1,5 @@
 <?php
+
 $url_common = $_SERVER['DOCUMENT_ROOT'];
 require_once($url_common . '/libs/Database.class.php');
 require_once($url_common . '/libs/bootstrap.php');
