@@ -26,6 +26,7 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MAIN NAVIGATION</li>
             <li><a href="?m=category&a=category_list"><i class="fa fa-circle-o text-red"></i> <span>Catalog Manager</span></a></li>
+            <li><a href="?m=book&a=book_list"><i class="fa fa-circle-o text-red"></i> <span>Book List</span></a></li>
             <li class="active treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>

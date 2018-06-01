@@ -47,7 +47,7 @@ if (!empty($_SESSION['flash'])) {
                             <td><?php echo $catelogy['title'] ?>
                             </td>
                             <td><?php echo $catelogy['alias'] ?></td>
-                            <td> <button type="submit" name="delete_one" class="btn btn-danger btn-xs">Delete</button></td>
+                            <td><a href="/app/backend/sites/category/category_delete.php?id=<?php echo $catelogy['id']?>"><button  name="delete_one" class="btn btn-danger btn-xs">Delete</button></a></td>
                         </tr>
                         <?php
                     }

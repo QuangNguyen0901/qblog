@@ -12,3 +12,5 @@ function __autoLoad($className){
 
 $host= $_SERVER['HTTP_HOST'];
 $root = $_SERVER['DOCUMENT_ROOT'];
+
+date_default_timezone_set('Asia/Ho_Chi_Minh');
