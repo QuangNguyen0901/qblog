@@ -1,0 +1,8 @@
+.input_edit_inline{
+    background: transparent;
+    border: none;
+}
+
+.editing{
+    border: 1px lightgray solid;
+}
