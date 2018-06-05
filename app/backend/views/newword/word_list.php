@@ -60,21 +60,36 @@ if (!empty($_SESSION['flash'])) {
                         <td><label>
                                 <input type="checkbox" class="minimal">
                             </label></td>
-                        <td><input type="text" class="word_detail input_edit_inline" id="<?php echo $word['id'] ?>" name="mean"
+                        <td><input type="text" class="word_detail input_edit_inline" id="<?php echo $word['id'] ?>"
+                                   name="mean"
                                    value="<?php echo $word['word'] ?>"
                                    readonly></td>
-                        <td><input type="text" class="word_detail input_edit_inline" id="<?php echo $word['id'] ?>" name="mean"
+                        <td><input type="text" class="word_detail input_edit_inline" id="<?php echo $word['id'] ?>"
+                                   name="mean"
                                    value="<?php echo $word['mean'] ?>"
                                    readonly></td>
-                        <td><input type="text" class="word_detail input_edit_inline" id="<?php echo $word['id'] ?>" name="description"
+                        <td><input type="text" class="word_detail input_edit_inline" id="<?php echo $word['id'] ?>"
+                                   name="description"
                                    value="<?php echo $word['description'] ?>" readonly></td>
-                        <td><input type="text" class="word_detail input_edit_inline" id="<?php echo $word['id'] ?>" name="image"
+                        <td><input type="text" class="word_detail input_edit_inline" id="<?php echo $word['id'] ?>"
+                                   name="image"
                                    value="<?php echo $word['image'] ?>"
                                    readonly></td>
-                        <td>
-                            <button name="edit" class="edit btn btn-danger btn-xs">Edit</button>
-                            <a href="/app/backend/sites/newword/word_delete.php?id=<?php echo $word['id'] ?>">
-                                <button name="delete_one" class="delete btn btn-danger btn-xs">Delete</button>
+                        <td class="btn">
+
+                            <button name="edit" class="edit btn btn-success btn-xs" id="<?php echo $word['id'] ?>">Edit
+                            </button>
+                            <button style="display: none" name="cancel" class="cancel btn btn-primary btn-xs"
+                                    id="<?php echo $word['id'] ?>">
+                                Cancel
+                            </button>
+                            <a style="display: none" class="save"
+                               href="/app/backend/sites/newword/word_edit.php?id=<?php echo $word['id'] ?>">
+                                <button name="save" class="btnSave btn btn-success btn-xs">Save</button>
+                            </a>
+                            <a class="delete"
+                               href="/app/backend/sites/newword/word_delete.php?id=<?php echo $word['id'] ?>">
+                                <button name="delete_one" class="btnDelete btn btn-danger btn-xs">Delete</button>
                             </a>
                         </td>
                     </tr>
@@ -119,22 +134,92 @@ if (!empty($_SESSION['flash'])) {
 <script>
     $(document).ready(function () {
         $('.edit').click(function (event) {
-            /* Act on the event */
             event.preventDefault();
-//            console.log("aaa");
-//            $(this).parent().parent().find("input").removeAttr('readonly');
             $(this).closest('tr').find("input").removeAttr('readonly');
             $(this).closest('tr').find("input").addClass('editing');
 
-            var btnCancel = "<button name=\"cancel\" class=\"btn btn-danger btn-xs\" >Cancel</button>";
-            $(this).parent().find(".delete").before(btnCancel);
+//            console.log($(this).parent().find('.cancel'));
 
-            var btnSave = " <a href=\"/app/backend/sites/newword/word_edit.php?id="+<?php echo $word['id'] ?>+"\">\n" +
-                "                                <button name=\"save\" class=\"btn btn-danger btn-xs\">Save</button>\n" +
-                "                            </a>";
-            $(this).parent().find(".delete").before(btnSave);
+            $(this).parent().find('.cancel').css("display","inline");
+            $(this).parent().find('.save').css("display","inline");
 
+            $(this).parent().find('.delete').css("display","none");
+            $(this).css("display","none");
+        });
 
+        $('.cancel').click(function (event) {
+            event.preventDefault();
+            $(this).closest('tr').find("input").attr('readonly',true);
+            $(this).closest('tr').find("input").removeClass('editing');
+
+            $(this).parent().find('.edit').css("display","inline");
+            $(this).parent().find('.delete').css("display","inline");
+
+            $(this).parent().find('.save').css("display","none");
+            $(this).css("display","none");
+        });
+
+        $('.save').click(function (e) {
+            e.preventDefault();
+            $.post('/app/backend/sites/newword/word_edit.php', {
+                word_id: 4,
+                word:  ,
+                mean:  ,
+                description:  ,
+                image:
+            }, function (result) {
+                result = jQuery.parseJSON(result);
+                console.log(result['word']);
+                $('.test_ajax_return1').html(result['word']);
+            });
         });
     });
+
+
 </script>
+
+<!--<script>-->
+<!--    $(document).ready(function () {-->
+<!--        $('.edit').click(function (event) {-->
+<!--            /* Act on the event */-->
+<!--            event.preventDefault();-->
+<!--//            console.log("aaa");-->
+<!--//            $(this).parent().parent().find("input").removeAttr('readonly');-->
+<!--            $(this).closest('tr').find("input").removeAttr('readonly');-->
+<!--            $(this).closest('tr').find("input").addClass('editing');-->
+<!---->
+<!--            var word_id = $(this).attr("id");-->
+<!---->
+<!--            var btnCancel = '<button id=\"' + word_id + '\" name=\"cancel\" class=\"cancel btn btn-danger btn-xs\" >Cancel</button>';-->
+<!--            $(this).parent().append(btnCancel);-->
+<!---->
+<!--            var btnSave = '<a href=\"/app/backend/sites/newword/word_edit.php?id=' + word_id + '\">' +-->
+<!--                '<button name= \"save\" class=\"save btn btn-danger btn-xs\">Save</button>' +-->
+<!--                '</a>';-->
+<!--            $(this).parent().append(btnSave);-->
+<!---->
+<!--            $(this).parent().find(".btnDelete").remove();-->
+<!--            $(this).remove();-->
+<!--        });-->
+<!---->
+<!--        $('.btn').on('click', '.cancel', function (e2) {-->
+<!--            e2.preventDefault();-->
+<!--            console.log("click cancel");-->
+<!---->
+<!--            var word_id = $(this).attr("id");-->
+<!---->
+<!--            var btnEdit = '<button name="edit" class="edit btn btn-danger btn-xs" id="' + word_id + '">Edit</button>';-->
+<!--            $(this).parent().append(btnEdit);-->
+<!---->
+<!--            var btnDelete = '<a class="btnDelete" href="/app/backend/sites/newword/word_delete.php?id="' + word_id + '">' +-->
+<!--                '<button name="delete_one" class="delete btn btn-danger btn-xs">Delete</button>' +-->
+<!--                '</a>';-->
+<!--            $(this).parent().append(btnDelete);-->
+<!---->
+<!--            $(this).parent().find(".save").remove();-->
+<!--            $(this).remove();-->
+<!--// loi khong the click lai button edit lan thu 2-->
+<!--        });-->
+<!---->
+<!--    });-->
+<!--</script>-->
