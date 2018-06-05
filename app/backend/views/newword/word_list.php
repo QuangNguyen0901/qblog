@@ -60,18 +60,18 @@ if (!empty($_SESSION['flash'])) {
                         <td><label>
                                 <input type="checkbox" class="minimal">
                             </label></td>
-                        <td><input type="text" class="word_detail input_edit_inline" id="<?php echo $word['id'] ?>"
-                                   name="mean"
+                        <td><input type="text" class="word input_edit_inline"
+                                   name="word"
                                    value="<?php echo $word['word'] ?>"
                                    readonly></td>
-                        <td><input type="text" class="word_detail input_edit_inline" id="<?php echo $word['id'] ?>"
+                        <td><input type="text" class="mean input_edit_inline"
                                    name="mean"
                                    value="<?php echo $word['mean'] ?>"
                                    readonly></td>
-                        <td><input type="text" class="word_detail input_edit_inline" id="<?php echo $word['id'] ?>"
+                        <td><input type="text" class="description input_edit_inline"
                                    name="description"
                                    value="<?php echo $word['description'] ?>" readonly></td>
-                        <td><input type="text" class="word_detail input_edit_inline" id="<?php echo $word['id'] ?>"
+                        <td><input type="text" class="image input_edit_inline"
                                    name="image"
                                    value="<?php echo $word['image'] ?>"
                                    readonly></td>
@@ -83,9 +83,9 @@ if (!empty($_SESSION['flash'])) {
                                     id="<?php echo $word['id'] ?>">
                                 Cancel
                             </button>
-                            <a style="display: none" class="save"
-                               href="/app/backend/sites/newword/word_edit.php?id=<?php echo $word['id'] ?>">
-                                <button name="save" class="btnSave btn btn-success btn-xs">Save</button>
+                            <a style="display: none" class="save" id="<?php echo $word['id'] ?>">
+<!--                               href="/app/backend/sites/newword/word_edit.php?id=--><?php //echo $word['id'] ?><!--">-->
+                                <button name="save" class="btnSave btn btn-success btn-xs" id="<?php echo $word['id'] ?>">Save</button>
                             </a>
                             <a class="delete"
                                href="/app/backend/sites/newword/word_delete.php?id=<?php echo $word['id'] ?>">
@@ -116,20 +116,20 @@ if (!empty($_SESSION['flash'])) {
 </div>
 
 <!--<script src="/assets/AdminLTE/bower_components/jquery/dist/jquery.min.js"></script>-->
-<script>
-    $(document).ready(function () {
-        $('.test_ajax').click(function (e) {
-            e.preventDefault();
-            $.post('/app/backend/sites/newword/word_detail.php', {
-                word_id: 4
-            }, function (result) {
-                result = jQuery.parseJSON(result);
-                console.log(result['word']);
-                $('.test_ajax_return1').html(result['word']);
-            });
-        });
-    });
-</script>
+<!--<script>-->
+<!--    $(document).ready(function () {-->
+<!--        $('.test_ajax').click(function (e) {-->
+<!--            e.preventDefault();-->
+<!--            $.post('/app/backend/sites/newword/word_detail.php', {-->
+<!--                word_id: 4-->
+<!--            }, function (result) {-->
+<!--                result = jQuery.parseJSON(result);-->
+<!--                console.log(result['word']);-->
+<!--                $('.test_ajax_return1').html(result['word']);-->
+<!--            });-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
 
 <script>
     $(document).ready(function () {
@@ -140,36 +140,40 @@ if (!empty($_SESSION['flash'])) {
 
 //            console.log($(this).parent().find('.cancel'));
 
-            $(this).parent().find('.cancel').css("display","inline");
-            $(this).parent().find('.save').css("display","inline");
+            $(this).parent().find('.cancel').css("display", "inline");
+            $(this).parent().find('.save').css("display", "inline");
 
-            $(this).parent().find('.delete').css("display","none");
-            $(this).css("display","none");
+            $(this).parent().find('.delete').css("display", "none");
+            $(this).css("display", "none");
         });
 
         $('.cancel').click(function (event) {
             event.preventDefault();
-            $(this).closest('tr').find("input").attr('readonly',true);
+            $(this).closest('tr').find("input").attr('readonly', true);
             $(this).closest('tr').find("input").removeClass('editing');
 
-            $(this).parent().find('.edit').css("display","inline");
-            $(this).parent().find('.delete').css("display","inline");
+            $(this).parent().find('.edit').css("display", "inline");
+            $(this).parent().find('.delete').css("display", "inline");
 
-            $(this).parent().find('.save').css("display","none");
-            $(this).css("display","none");
+            $(this).parent().find('.save').css("display", "none");
+            $(this).css("display", "none");
         });
 
-        $('.save').click(function (e) {
+        $('.btnSave').click(function (e) {
             e.preventDefault();
+            $(this).closest('tr').find("input").attr('readonly', true);
+            $(this).closest('tr').find("input").removeClass('editing');
+
             $.post('/app/backend/sites/newword/word_edit.php', {
-                word_id: 4,
-                word:  ,
-                mean:  ,
-                description:  ,
-                image:
+                // word_id:$(this).attr("id")
+                word_id: $(this).attr("id"),
+                word:$(this).closest('tr').find(".word").val(),
+                mean:$(this).closest('tr').find(".mean").val(),
+                description:$(this).closest('tr').find(".description").val(),
+                image:$(this).closest('tr').find(".image").val()
             }, function (result) {
                 result = jQuery.parseJSON(result);
-                console.log(result['word']);
+                // console.log(result['word']);
                 $('.test_ajax_return1').html(result['word']);
             });
         });
