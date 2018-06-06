@@ -52,6 +52,7 @@ if (!empty($_SESSION['flash'])) {
                     <th>Mean</th>
                     <th>Description</th>
                     <th>View image</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -83,10 +84,9 @@ if (!empty($_SESSION['flash'])) {
                                     id="<?php echo $word['id'] ?>">
                                 Cancel
                             </button>
-                            <a style="display: none" class="save" id="<?php echo $word['id'] ?>">
-<!--                               href="/app/backend/sites/newword/word_edit.php?id=--><?php //echo $word['id'] ?><!--">-->
-                                <button name="save" class="btnSave btn btn-success btn-xs" id="<?php echo $word['id'] ?>">Save</button>
-                            </a>
+                            <button style="display: none" name="save" class="save btn btn-success btn-xs" id="<?php echo $word['id'] ?>">
+                                Save
+                            </button>
                             <a class="delete"
                                href="/app/backend/sites/newword/word_delete.php?id=<?php echo $word['id'] ?>">
                                 <button name="delete_one" class="btnDelete btn btn-danger btn-xs">Delete</button>
@@ -104,32 +104,15 @@ if (!empty($_SESSION['flash'])) {
                     <th>Mean</th>
                     <th>Description</th>
                     <th>View image</th>
+                    <th>Action</th>
                 </tr>
                 </tfoot>
             </table>
-            <button class="test_ajax">test ajax</button>
-            <h2 class="test_ajax_return1">2222</h2>
         </div>
         <!-- /.box-body -->
     </div>
     <!-- /.box -->
 </div>
-
-<!--<script src="/assets/AdminLTE/bower_components/jquery/dist/jquery.min.js"></script>-->
-<!--<script>-->
-<!--    $(document).ready(function () {-->
-<!--        $('.test_ajax').click(function (e) {-->
-<!--            e.preventDefault();-->
-<!--            $.post('/app/backend/sites/newword/word_detail.php', {-->
-<!--                word_id: 4-->
-<!--            }, function (result) {-->
-<!--                result = jQuery.parseJSON(result);-->
-<!--                console.log(result['word']);-->
-<!--                $('.test_ajax_return1').html(result['word']);-->
-<!--            });-->
-<!--        });-->
-<!--    });-->
-<!--</script>-->
 
 <script>
     $(document).ready(function () {
@@ -159,22 +142,27 @@ if (!empty($_SESSION['flash'])) {
             $(this).css("display", "none");
         });
 
-        $('.btnSave').click(function (e) {
+        $('.save').click(function (e) {
             e.preventDefault();
             $(this).closest('tr').find("input").attr('readonly', true);
             $(this).closest('tr').find("input").removeClass('editing');
 
+            $(this).parent().find('.edit').css("display", "inline");
+            $(this).parent().find('.delete').css("display", "inline");
+
+            $(this).parent().find('.cancel').css("display", "none");
+            $(this).css("display", "none");
+
+
             $.post('/app/backend/sites/newword/word_edit.php', {
                 // word_id:$(this).attr("id")
                 word_id: $(this).attr("id"),
-                word:$(this).closest('tr').find(".word").val(),
-                mean:$(this).closest('tr').find(".mean").val(),
-                description:$(this).closest('tr').find(".description").val(),
-                image:$(this).closest('tr').find(".image").val()
+                word: $(this).closest('tr').find(".word").val(),
+                mean: $(this).closest('tr').find(".mean").val(),
+                description: $(this).closest('tr').find(".description").val(),
+                image: $(this).closest('tr').find(".image").val()
             }, function (result) {
-                result = jQuery.parseJSON(result);
-                // console.log(result['word']);
-                $('.test_ajax_return1').html(result['word']);
+                
             });
         });
     });
