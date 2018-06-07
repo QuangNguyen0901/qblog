@@ -1,6 +1,6 @@
 <?php
-//print_r($_SESSION);
-print_r($_GET['book_id']);
+print_r($_SESSION);
+//print_r($_GET['book_id']);
 ?>
 <?php
 if (!empty($_SESSION['flash'])) {
@@ -44,7 +44,7 @@ if (!empty($_SESSION['flash'])) {
                     </div>
                 </div>
             </form>
-            <table id="example1" class="table table-bordered table-striped">
+            <table id="example2" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                     <th></th>
@@ -84,7 +84,8 @@ if (!empty($_SESSION['flash'])) {
                                     id="<?php echo $word['id'] ?>">
                                 Cancel
                             </button>
-                            <button style="display: none" name="save" class="save btn btn-success btn-xs" id="<?php echo $word['id'] ?>">
+                            <button style="display: none" name="save" class="save btn btn-success btn-xs"
+                                    id="<?php echo $word['id'] ?>">
                                 Save
                             </button>
                             <a class="delete"
@@ -108,6 +109,12 @@ if (!empty($_SESSION['flash'])) {
                 </tr>
                 </tfoot>
             </table>
+            <div class="dataTables_paginate">
+                <?php
+                pager_function($totalPages, $currentPage, $link);
+                ?>
+            </div>
+
         </div>
         <!-- /.box-body -->
     </div>
@@ -162,7 +169,7 @@ if (!empty($_SESSION['flash'])) {
                 description: $(this).closest('tr').find(".description").val(),
                 image: $(this).closest('tr').find(".image").val()
             }, function (result) {
-                
+
             });
         });
     });

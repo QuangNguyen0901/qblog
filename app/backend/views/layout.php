@@ -13,7 +13,7 @@
         <!-- Ionicons -->
         <link rel="stylesheet" href="/assets/AdminLTE/bower_components/Ionicons/css/ionicons.min.css">
         <!-- DataTables -->
-        <link rel="stylesheet" href="/assets/AdminLTE/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/AdminLTE/bower_components/datatables.net-bs/css/dataTables.bootstrap.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="/assets/AdminLTE/dist/css/AdminLTE.min.css">
         <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -326,11 +326,11 @@
             $(function () {
                 $('#example1').DataTable()
                 $('#example2').DataTable({
-                    'paging': true,
+                    'paging': false,
                     'lengthChange': false,
                     'searching': false,
-                    'ordering': true,
-                    'info': true,
+                    'ordering': false,
+                    'info': false,
                     'autoWidth': false
                 })
             })

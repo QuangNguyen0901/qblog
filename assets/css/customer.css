@@ -6,3 +6,9 @@
 .editing{
     border: 1px lightgray solid;
 }
+
+.pager1 {
+    margin: 0;
+    white-space: nowrap;
+    text-align: right;
+}
