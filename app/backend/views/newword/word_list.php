@@ -48,7 +48,7 @@ if (!empty($_SESSION['flash'])) {
                 <thead>
                 <tr>
                     <th></th>
-                    <th>Words</th>
+                    <th>Words <span class="fa fa-sort"></span> </th>
                     <th>Mean</th>
                     <th>Description</th>
                     <th>View image</th>
