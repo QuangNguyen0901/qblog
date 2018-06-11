@@ -36,6 +36,6 @@ $db->execute();
 
 $sql = "SELECT * FROM newword WHERE id=$word_id";
 $db->query($sql);
-$row = $db->findOne();
-die (json_encode($row));
+$row2 = $db->findOne();
+die (json_encode($row2));
 ?>

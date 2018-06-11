@@ -84,6 +84,8 @@
         <script src="/assets/AdminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
         <script src="/assets/AdminLTE/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 
+        <script src="/assets/js/jquery-ui.js"></script>
+
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">

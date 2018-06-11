@@ -14,6 +14,8 @@ session_start();
 //print_r($_SESSION['user']['id']);
 $book_id= $_GET['book_id'];
 
+
+
 $page = (isset($_GET['page']) ? $_GET['page'] : 1);
 $limit = 10;
 $offset = ($page - 1)*$limit;
@@ -23,7 +25,10 @@ $sql = "SELECT bookname FROM book WHERE id=$book_id";
 $db->query($sql);
 $book = $db->findOne();
 
-$sql = "SELECT * FROM newword WHERE book_id=$book_id ORDER BY id DESC LIMIT $limit OFFSET $offset";
+$order = (isset($_GET['sort_by']) ? $_GET['sort_by'] :'id');
+$sort_type = (isset($_GET['sort_type']) ? $_GET['sort_type'] :'DESC');
+
+$sql = "SELECT * FROM newword WHERE book_id=$book_id ORDER BY $order ".$sort_type." LIMIT $limit OFFSET $offset";
 $db->query($sql);
 $row = $db->findAll();
 
