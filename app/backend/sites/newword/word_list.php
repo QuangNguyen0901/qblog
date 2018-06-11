@@ -25,8 +25,8 @@ $sql = "SELECT bookname FROM book WHERE id=$book_id";
 $db->query($sql);
 $book = $db->findOne();
 
-$order = (isset($_GET['sort_by']) ? $_GET['sort_by'] :'id');
-$sort_type = (isset($_GET['sort_type']) ? $_GET['sort_type'] :'DESC');
+$order = (isset($_GET['sort-by']) ? $_GET['sort-by'] :'id');
+$sort_type = (isset($_GET['sort-type']) ? $_GET['sort-type'] :'DESC');
 
 $sql = "SELECT * FROM newword WHERE book_id=$book_id ORDER BY $order ".$sort_type." LIMIT $limit OFFSET $offset";
 $db->query($sql);

@@ -48,9 +48,9 @@ if (!empty($_SESSION['flash'])) {
                 <thead>
                 <tr>
                     <th></th>
-                    <th>Words <span class="fa fa-sort no-sort" id="cl1" ></span> </th>
-                    <th>Mean<span class="fa fa-sort-up yes-sort" id="cl2"></th>
-                    <th>Description<span class="fa fa-sort-down yes-sort" id="cl3"></th>
+                    <th>Words<span class="fa fa-sort no-sort table-sort" id="cl1" name="word"></span></th>
+                    <th>Mean<span class="fa fa-sort-up yes-sort table-sort" id="cl2" name="mean"></th>
+                    <th>Description<span class="fa fa-sort-down yes-sort table-sort" id="cl3" name="description"></th>
                     <th>View image</th>
                     <th>Action</th>
                 </tr>
@@ -180,22 +180,27 @@ if (!empty($_SESSION['flash'])) {
 
         $('.fa').click(function (event) {
             event.preventDefault();
+
+            
             if ($(this).hasClass('no-sort')){
                 $(this).removeClass('no-sort');
                 $(this).removeClass('fa-sort');
                 $(this).addClass('fa-sort-down');
                 $(this).addClass('yes-sort');
+                location.href='?m=newword&a=word_list&book_id=3&sort-by='+$(this).attr('name')+'&sort-type=ASC';
             } else {
                 if ($(this).hasClass('fa-sort-down')){
                     $(this).removeClass('fa-sort-down');
                     $(this).addClass('fa-sort-up');
+                    location.href='?m=newword&a=word_list&book_id=3&sort-by='+$(this).attr('name')+'&sort-type=DESC';
                 }else {
                     $(this).removeClass('fa-sort-up');
                     $(this).addClass('fa-sort-down');
+                    location.href='?m=newword&a=word_list&book_id=3&sort-by='+$(this).attr('name')+'&sort-type=ASC';
                 }
             }
             var this_id = $(this).attr('id');
-            $('.fa').not('#'+this_id).removeClass().addClass('fa fa-sort no-sort');
+            $('.table-sort').not('#'+this_id).removeClass().addClass('fa fa-sort no-sort table-sort');
         });
     });
 
