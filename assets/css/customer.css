@@ -7,8 +7,12 @@
     border: 1px lightgray solid;
 }
 
-.pager1 {
-    margin: 0;
-    white-space: nowrap;
-    text-align: right;
+.no-sort,.yes-sort{
+    float: right ;
+    color: lightgrey;
 }
+
+.yes-sort{
+    color: black;
+}
+
