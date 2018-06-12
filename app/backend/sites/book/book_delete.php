@@ -16,6 +16,7 @@ $db->query($sql);
 $db->bind([
     ':id' => $id
 ]);
+
 if ($db->execute()) {
     $flash = [
         'type' => 'alert-success',

@@ -1,5 +1,5 @@
 <?php
-print_r($_SESSION);
+//print_r($_SESSION);
 //print_r($_GET['book_id']);
 ?>
 <?php
@@ -89,7 +89,7 @@ if (!empty($_SESSION['flash'])) {
                                 Save
                             </button>
                             <a class="delete"
-                               href="/app/backend/sites/newword/word_delete.php?id=<?php echo $word['id'] ?>">
+                               href="/app/backend/sites/newword/word_delete.php?id=<?php echo $word['id'] ?>&book_id=<?php echo $_GET['book_id'] ?>">
                                 <button name="delete_one" class="btnDelete btn btn-danger btn-xs">Delete</button>
                             </a>
                         </td>
@@ -123,6 +123,24 @@ if (!empty($_SESSION['flash'])) {
 
 <script>
     $(document).ready(function () {
+        let searchParams = new URLSearchParams(window.location.search);
+        let sortby = searchParams.get('sort-by');
+        let sorttype = searchParams.get('sort-type');
+        let book_id = searchParams.get('book_id');
+
+        $('.table-sort').each(function (index,element) {
+            if ($(element).attr('name') == sortby){
+                if (sorttype == 'DESC'){
+                    $(element).removeClass().addClass('fa fa-sort-up yes-sort table-sort');
+                }else {
+                    $(element).removeClass().addClass('fa fa-sort-down yes-sort table-sort');
+                }
+            }else {
+                $(element).removeClass().addClass('fa fa-sort no-sort table-sort');
+            }
+
+        });
+
         $('.edit').click(function (event) {
             event.preventDefault();
             $(this).closest('tr').find("input").removeAttr('readonly');
@@ -187,23 +205,22 @@ if (!empty($_SESSION['flash'])) {
                 $(this).removeClass('fa-sort');
                 $(this).addClass('fa-sort-down');
                 $(this).addClass('yes-sort');
-                location.href='?m=newword&a=word_list&book_id=3&sort-by='+$(this).attr('name')+'&sort-type=ASC';
+                location.href='?m=newword&a=word_list&book_id='+book_id+'&sort-by='+$(this).attr('name')+'&sort-type=ASC';
             } else {
                 if ($(this).hasClass('fa-sort-down')){
                     $(this).removeClass('fa-sort-down');
                     $(this).addClass('fa-sort-up');
-                    location.href='?m=newword&a=word_list&book_id=3&sort-by='+$(this).attr('name')+'&sort-type=DESC';
+                    location.href='?m=newword&a=word_list&book_id='+book_id+'&sort-by='+$(this).attr('name')+'&sort-type=DESC';
                 }else {
                     $(this).removeClass('fa-sort-up');
                     $(this).addClass('fa-sort-down');
-                    location.href='?m=newword&a=word_list&book_id=3&sort-by='+$(this).attr('name')+'&sort-type=ASC';
+                    location.href='?m=newword&a=word_list&book_id='+book_id+'&sort-by='+$(this).attr('name')+'&sort-type=ASC';
                 }
             }
             var this_id = $(this).attr('id');
             $('.table-sort').not('#'+this_id).removeClass().addClass('fa fa-sort no-sort table-sort');
         });
     });
-
 
 </script>
 
