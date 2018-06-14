@@ -36,11 +36,16 @@ if (!empty($_SESSION['flash'])) {
                     <div class="col-sm-2">
                         <input type="text" class="form-control" name="image" placeholder="image URL">
                     </div>
-                    <div class="col-sm-2" style="visibility: hidden">
+                    <div class="col-sm-2" style="display: none">
                         <input type="text" name="book_id" value="<?php echo $_GET['book_id'] ?>">
                     </div>
                     <div class="col-sm-1">
-                        <button type="submit" name="submit" class="btn btn-info pull-right btn-sm">Add</button>
+                        <button type="submit" name="submit" class="btn btn-info pull-left btn-sm">Add</button>
+                    </div>
+                    <div class="col-sm-1">
+                        <button type="button" name="import" class="btn btn-info pull-right btn-sm" data-toggle="modal"
+                                data-target="#import">Import
+                        </button>
                     </div>
                 </div>
             </form>
@@ -88,10 +93,17 @@ if (!empty($_SESSION['flash'])) {
                                     id="<?php echo $word['id'] ?>">
                                 Save
                             </button>
-                            <a class="delete"
-                               href="/app/backend/sites/newword/word_delete.php?id=<?php echo $word['id'] ?>&book_id=<?php echo $_GET['book_id'] ?>">
-                                <button name="delete_one" class="btnDelete btn btn-danger btn-xs">Delete</button>
-                            </a>
+                            <!--                            <a class="delete"-->
+                            <!--                               href="/app/backend/sites/newword/word_delete.php?id=-->
+                            <?php //echo $word['id'] ?><!--&book_id=--><?php //echo $_GET['book_id'] ?><!--">-->
+                            <!--                                <button name="delete_one" class="btnDelete btn btn-danger btn-xs">Delete</button>-->
+                            <!--                            </a>-->
+                            <button type="button" class="btnDelete btn btn-danger btn-xs delete-btn2"
+                                    data-toggle="modal"
+                                    data-target="#modal-default" word="<?php echo $word['word'] ?>"
+                                    word_id="<?php echo $word['id'] ?>" book_id="<?php echo $_GET['book_id'] ?>">
+                                Delete
+                            </button>
                         </td>
                     </tr>
                     <?php
@@ -115,6 +127,60 @@ if (!empty($_SESSION['flash'])) {
                 ?>
             </div>
 
+            <div class="modal fade" id="modal-default">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Delete a word</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p class="delete-popup-text">Do you want to delete word</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+                            <a class="del-yes-btn">
+                                <button name="delete_one" class="btn btn-primary">Yes</button>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+
+            <div class="modal fade" id="import">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Import excel file</h4>
+                        </div>
+                        <form action="/app/backend/sites/newword/word_import_excel.php" method="post" enctype="multipart/form-data">
+                            <div class="modal-body">
+                                <input type="file" name="file">
+                            </div>
+                            <div class="col-sm-2" style="display: none">
+                                <input type="text" name="book_id" value="<?php echo $_GET['book_id'] ?>">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel
+                                </button>
+                                <a>
+                                    <button type="submit" name="btnImport" class="btn btn-primary">Import</button>
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+
         </div>
         <!-- /.box-body -->
     </div>
@@ -128,14 +194,14 @@ if (!empty($_SESSION['flash'])) {
         let sorttype = searchParams.get('sort-type');
         let book_id = searchParams.get('book_id');
 
-        $('.table-sort').each(function (index,element) {
-            if ($(element).attr('name') == sortby){
-                if (sorttype == 'DESC'){
+        $('.table-sort').each(function (index, element) {
+            if ($(element).attr('name') == sortby) {
+                if (sorttype == 'DESC') {
                     $(element).removeClass().addClass('fa fa-sort-up yes-sort table-sort');
-                }else {
+                } else {
                     $(element).removeClass().addClass('fa fa-sort-down yes-sort table-sort');
                 }
-            }else {
+            } else {
                 $(element).removeClass().addClass('fa fa-sort no-sort table-sort');
             }
 
@@ -185,7 +251,7 @@ if (!empty($_SESSION['flash'])) {
                 description: $(this).closest('tr').find(".description").val(),
                 image: $(this).closest('tr').find(".image").val()
             }, function (result) {
-                var result_array=  jQuery.parseJSON(result);
+                var result_array = jQuery.parseJSON(result);
                 console.log(result_array);
                 console.log(this1.closest('tr').find('.word').val());
                 this1.closest('tr').find(".word").val(result_array['word']);
@@ -199,27 +265,35 @@ if (!empty($_SESSION['flash'])) {
         $('.fa').click(function (event) {
             event.preventDefault();
 
-            
-            if ($(this).hasClass('no-sort')){
+            if ($(this).hasClass('no-sort')) {
                 $(this).removeClass('no-sort');
                 $(this).removeClass('fa-sort');
                 $(this).addClass('fa-sort-down');
                 $(this).addClass('yes-sort');
-                location.href='?m=newword&a=word_list&book_id='+book_id+'&sort-by='+$(this).attr('name')+'&sort-type=ASC';
+                location.href = '?m=newword&a=word_list&book_id=' + book_id + '&sort-by=' + $(this).attr('name') + '&sort-type=ASC';
             } else {
-                if ($(this).hasClass('fa-sort-down')){
+                if ($(this).hasClass('fa-sort-down')) {
                     $(this).removeClass('fa-sort-down');
                     $(this).addClass('fa-sort-up');
-                    location.href='?m=newword&a=word_list&book_id='+book_id+'&sort-by='+$(this).attr('name')+'&sort-type=DESC';
-                }else {
+                    location.href = '?m=newword&a=word_list&book_id=' + book_id + '&sort-by=' + $(this).attr('name') + '&sort-type=DESC';
+                } else {
                     $(this).removeClass('fa-sort-up');
                     $(this).addClass('fa-sort-down');
-                    location.href='?m=newword&a=word_list&book_id='+book_id+'&sort-by='+$(this).attr('name')+'&sort-type=ASC';
+                    location.href = '?m=newword&a=word_list&book_id=' + book_id + '&sort-by=' + $(this).attr('name') + '&sort-type=ASC';
                 }
             }
             var this_id = $(this).attr('id');
-            $('.table-sort').not('#'+this_id).removeClass().addClass('fa fa-sort no-sort table-sort');
+            $('.table-sort').not('#' + this_id).removeClass().addClass('fa fa-sort no-sort table-sort');
         });
+
+        $('.delete-btn2').click(function (event) {
+            event.preventDefault();
+            var word = $(this).attr('word');
+            var word_id = $(this).attr('word_id');
+            var book_id = $(this).attr('book_id');
+            $('.delete-popup-text').html('Do you want to delete word:   ' + word);
+            $('.del-yes-btn').attr("href", "/app/backend/sites/newword/word_delete.php?id=" + word_id + "&book_id=" + book_id);
+        })
     });
 
 </script>

@@ -37,7 +37,6 @@ if (!empty($_POST)) {
 //        print_r($_SESSION);die;
 
         $date = date('Y/m/d H:i:s');
-
         $db = new Database();
         $sql = "INSERT INTO newword (`word`,`book_id`,`mean`,`description`,`image`,`updated`,`created`) VALUES (:word,:book_id,:mean,:description,:image,:updated,:created) ";
         $db->query($sql);
