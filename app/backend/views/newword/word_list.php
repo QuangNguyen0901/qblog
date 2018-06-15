@@ -43,7 +43,7 @@ if (!empty($_SESSION['flash'])) {
                         <button type="submit" name="submit" class="btn btn-info pull-left btn-sm">Add</button>
                     </div>
                     <div class="col-sm-1">
-                        <button type="button" name="import" class="btn btn-info pull-right btn-sm" data-toggle="modal"
+                        <button type="button" id="btnimport" name="import" class="btn btn-info pull-right btn-sm" data-toggle="modal"
                                 data-target="#import">Import
                         </button>
                     </div>
@@ -159,10 +159,13 @@ if (!empty($_SESSION['flash'])) {
                                 <span aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title">Import excel file</h4>
                         </div>
-                        <form action="/app/backend/sites/newword/word_import_excel.php" method="post" enctype="multipart/form-data">
+                        <form action="/app/backend/sites/newword/word_import_excel.php" method="post"
+                              enctype="multipart/form-data">
                             <div class="modal-body">
                                 <input type="file" name="file">
+                                <p class="text-warning" style="display: none;color: red">Import excel file unsuccessful</p>
                             </div>
+
                             <div class="col-sm-2" style="display: none">
                                 <input type="text" name="book_id" value="<?php echo $_GET['book_id'] ?>">
                             </div>
@@ -189,10 +192,13 @@ if (!empty($_SESSION['flash'])) {
 
 <script>
     $(document).ready(function () {
+        //Lấy parametter GET (URL) bằng JS
         let searchParams = new URLSearchParams(window.location.search);
         let sortby = searchParams.get('sort-by');
         let sorttype = searchParams.get('sort-type');
         let book_id = searchParams.get('book_id');
+        let import_err = searchParams.has('import_err'); // check xem co param 'import_err' hay khong, return true/false
+//        console.log(import_err);
 
         $('.table-sort').each(function (index, element) {
             if ($(element).attr('name') == sortby) {
@@ -293,7 +299,29 @@ if (!empty($_SESSION['flash'])) {
             var book_id = $(this).attr('book_id');
             $('.delete-popup-text').html('Do you want to delete word:   ' + word);
             $('.del-yes-btn').attr("href", "/app/backend/sites/newword/word_delete.php?id=" + word_id + "&book_id=" + book_id);
+        });
+
+        $('.image').click(function (event) {
+            event.preventDefault();
+            var window_image;
+            var str = $(this).val();
+            console.log(str);
+            if (!$(this).hasClass('editing')) {
+                if (str.includes("http", 0)) {  //Nếu trong chuỗi có http ở đầu
+                    window_image = window.open($(this).val(), "myWindow", "width=400,height=400,top=200,left=200");
+                }
+            }
         })
+
+        if (import_err) {
+            //ham tu dong click button
+            jQuery(function () {
+                jQuery('#btnimport').click();
+            });
+            $('.text-warning').css('display','block');
+
+        }
+
     });
 
 </script>
